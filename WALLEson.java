@@ -63,8 +63,11 @@ public class WALLEson extends Robot
 	 * onScannedRobot: What to do when you see another robot
 	 */
 	public void onScannedRobot(ScannedRobotEvent e) {
-		// Replace the next line with any behavior you would like
-		fire(1);
+		double anguloDoInimigo = getHeading() + e.getBearing();
+		double giroDoCanhao = anguloDoInimigo - getGunHeading();
+		double giroNormalizado = robocode.util.Utils.normalRelativeAngleDegrees(giroDoCanhao);
+		turnGunRight(giroNormalizado);
+		fire(2);
 		
 	}
 
